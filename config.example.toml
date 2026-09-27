@@ -1,0 +1,35 @@
+# Copy to config.toml and adjust. Paths use TOML literal strings ('...') so
+# backslashes don't need escaping.
+
+seven_zip = 'C:\Program Files\7-Zip\7z.exe'
+db_path = 'jobs.sqlite3'
+log_path = 'compression-agent.log'
+
+[limits]
+max_concurrent_jobs = 2      # 7-Zip is already multithreaded; keep this low
+max_queued_per_user = 5      # queued + running jobs per requester
+job_timeout_minutes = 180    # per archive
+min_free_gb = 10             # refuse to start an archive below this free space
+
+[zip]
+compression_level = 1        # 7-Zip -mx: 0 = store, 1 = fastest, 9 = ultra
+on_exists = "timestamp"      # fail | overwrite | timestamp (Folder_20260927-153000.zip)
+
+[auth]
+# "windows": resolve the requester's transitive AD groups via S4U (domain-joined box only)
+# "static":  use the [auth.static] mapping below (testing / non-domain machines)
+resolver = "windows"
+cache_minutes = 10
+
+# [auth.static]
+# "alice@corp.example.com" = ['CORP\Zip-Projects-Users']
+
+# Each allowed root lists the AD groups (DOMAIN\Name or SID) that may zip under it.
+# Requests for paths outside every root are rejected.
+[[roots]]
+path = '\\fileserver\projects'
+groups = ['CORP\Zip-Projects-Users']
+
+[[roots]]
+path = '\\fileserver\engineering\builds'
+groups = ['CORP\Zip-Engineering', 'CORP\Zip-Admins']
