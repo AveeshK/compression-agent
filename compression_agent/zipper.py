@@ -1,7 +1,5 @@
 """7-Zip wrapper: run one archive job with progress, timeout and cancellation."""
 
-from __future__ import annotations
-
 import codecs
 import os
 import re

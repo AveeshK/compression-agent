@@ -8,8 +8,6 @@
     compression-agent jobs | status ID | cancel ID | roots
 """
 
-from __future__ import annotations
-
 import argparse
 import logging
 import os
@@ -206,7 +204,8 @@ def cmd_cancel(agent: ZipAgent, args) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="compression-agent", description=__doc__,
-                                formatter_class=argparse.RawDescriptionHelpFormatter)  # fmt: skip
+                                formatter_class=argparse.RawDescriptionHelpFormatter,
+                                suggest_on_error=True)  # fmt: skip
     p.add_argument("--config", default=os.environ.get("ZIPAGENT_CONFIG", "config.toml"))
     p.add_argument("--user", help="requester identity (UPN); defaults to the current user")
     p.add_argument("-v", "--verbose", action="store_true")

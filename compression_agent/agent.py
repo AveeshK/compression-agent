@@ -4,8 +4,6 @@ Front ends (the CLI today, a Teams bot or queue consumer later) call ZipAgent;
 workers call ZipAgent.run_job. Every user-supplied value is validated here.
 """
 
-from __future__ import annotations
-
 import logging
 import os
 import shutil

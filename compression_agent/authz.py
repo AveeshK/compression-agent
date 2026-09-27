@@ -1,7 +1,5 @@
 """Requester authorization: AD group membership checked against allowed roots."""
 
-from __future__ import annotations
-
 import json
 import os
 import subprocess

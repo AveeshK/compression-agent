@@ -9,7 +9,7 @@ Today the front end is a CLI; a Teams bot will call the same `ZipAgent` API.
 
 ## Setup
 
-Requires Python 3.11+ and 7-Zip. No third-party runtime dependencies.
+Requires Python 3.14+ and 7-Zip. No third-party runtime dependencies.
 
 ```powershell
 python -m venv .venv

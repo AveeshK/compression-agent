@@ -6,8 +6,6 @@ touched, so a request can't escape its root via "..", device paths, or
 junctions/symlinks.
 """
 
-from __future__ import annotations
-
 import os
 import stat
 

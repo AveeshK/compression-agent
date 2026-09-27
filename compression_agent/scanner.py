@@ -4,8 +4,6 @@ Deliberately shallow: walking massive trees to compute sizes over SMB is the
 slow thing this tool exists to avoid.
 """
 
-from __future__ import annotations
-
 import os
 import stat
 from dataclasses import dataclass
